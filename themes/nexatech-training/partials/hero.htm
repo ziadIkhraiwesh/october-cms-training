@@ -1,0 +1,23 @@
+<section class="hero">
+    <div class="container hero-content">
+        <p class="eyebrow">October CMS Training Project</p>
+
+        <h1>
+            {% content "home/hero-title.htm" %}
+        </h1>
+
+        <div class="hero-description">
+            {% content "home/hero-description.htm" %}
+        </div>
+
+        <div class="hero-actions">
+            <a class="button button-primary" href="{{ 'about'|page }}">
+                Learn About Us
+            </a>
+
+            <a class="button button-secondary" href="{{ 'contact'|page }}">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section>

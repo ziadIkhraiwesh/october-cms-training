@@ -1,0 +1,31 @@
+description = "Main reusable website layout"
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="{{ this.page.meta_description|default('NexaTech October CMS training website') }}"
+    >
+
+    <title>{{ this.page.title }} | NexaTech</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ 'assets/css/theme.css'|theme }}"
+    >
+</head>
+
+<body>
+    {% partial "header" %}
+
+    <main id="main-content">
+        {% page %}
+    </main>
+
+    {% partial "footer" %}
+</body>
+</html>
