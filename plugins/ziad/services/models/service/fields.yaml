@@ -1,0 +1,39 @@
+fields:
+    title:
+        label: Service Title
+        type: text
+        span: full
+        required: true
+        placeholder: Enter the service title
+
+    short_description:
+        label: Short Description
+        type: textarea
+        size: small
+        span: full
+        required: true
+        placeholder: Enter a short summary
+        comment: Maximum 500 characters
+
+    content:
+        label: Detailed Content
+        type: richeditor
+        size: large
+        span: full
+        toolbarButtons: bold|italic|formatOL|formatUL|insertLink
+
+    is_active:
+        label: Active
+        type: switch
+        span: left
+        default: true
+        comment: Only active services appear publicly
+
+    sort_order:
+        label: Display Order
+        type: number
+        span: right
+        default: 0
+        required: true
+        min: 0
+        comment: Lower numbers appear first

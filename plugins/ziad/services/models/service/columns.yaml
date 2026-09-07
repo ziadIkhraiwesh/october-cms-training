@@ -1,0 +1,27 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+
+    title:
+        label: Service Title
+        type: text
+        searchable: true
+        sortable: true
+
+    is_active:
+        label: Active
+        type: switch
+        sortable: true
+
+    sort_order:
+        label: Display Order
+        type: number
+        sortable: true
+
+    updated_at:
+        label: Last Updated
+        type: datetime
+        format: M j, Y g:i A
+        sortable: true

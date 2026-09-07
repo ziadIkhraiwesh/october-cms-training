@@ -96,3 +96,103 @@ The project initially encountered Windows and OneDrive file-locking and permissi
 
 Ziad Ikhraiwesh
 Blue University Field Training Program — Task 20
+
+## Task 21: Dynamic Services Plugin
+
+Task 21 extends the October CMS website with a custom database-backed plugin that allows administrators to manage services and display them dynamically on the public website.
+
+### Plugin Information
+
+- Plugin namespace: `Ziad.Services`
+- Plugin name: `NexaTech Services`
+- Location: `plugins/ziad/services`
+- Purpose: Manage structured Service records through the October CMS backend and render active records using a reusable CMS component.
+
+### Main Plugin Structure
+
+- `Plugin.php`: Registers the plugin, backend navigation, permissions, and CMS component.
+- `models/Service.php`: Defines the Service model, database table, validation rules, casts, and query scopes.
+- `updates/create_services_table.php`: Creates the Services database table.
+- `updates/version.yaml`: Registers the plugin version and migration.
+- `controllers/Services.php`: Provides backend Create, Read, Update, and Delete management.
+- `models/service/fields.yaml`: Configures the backend form fields.
+- `models/service/columns.yaml`: Configures the backend list columns.
+- `components/ServiceList.php`: Retrieves active services from the database.
+- `components/servicelist/default.htm`: Renders reusable service cards and the empty state.
+
+### Service Model Fields
+
+- `title`: Service name.
+- `short_description`: Short public summary.
+- `content`: Detailed service content.
+- `is_active`: Controls whether the service appears publicly.
+- `sort_order`: Controls the public display order.
+- `created_at` and `updated_at`: Record timestamps.
+
+### Backend Management
+
+Administrators can manage Services through:
+
+`Administration Area → Services`
+
+The backend supports:
+
+- Viewing the Services list.
+- Creating and editing Services.
+- Deleting Services.
+- Activating or deactivating Services.
+- Setting the display order.
+- Searching and sorting records.
+- Required-field validation with meaningful feedback.
+
+### Dynamic Services Component
+
+Component alias:
+
+`serviceList`
+
+The component retrieves only active Services and orders them using the `sort_order` field.
+
+Available properties:
+
+- `maxItems`: Maximum number of Services displayed.
+- `orderDirection`: Ascending or descending display order.
+- `showTitle`: Shows or hides the section heading.
+
+Example page configuration:
+
+    [serviceList]
+    maxItems = 3
+    orderDirection = "asc"
+    showTitle = 1
+
+The component is rendered using:
+
+    {% component "serviceList" %}
+
+### Dynamic Content Flow
+
+`October CMS Backend → Database → ServiceList Component → Public Home Page`
+
+Changes made to a Service in the backend appear on the public website after refreshing the page. Inactive Services are hidden automatically. If no active Services exist, the component displays a clear empty-state message.
+
+### Database Setup
+
+After installing project dependencies and configuring `.env`, run:
+
+    php artisan october:migrate
+
+This installs the `Ziad.Services` plugin migration and creates the `ziad_services_services` table.
+
+### Task 21 Verification
+
+The completed verification included:
+
+- Three Services with different display orders.
+- Two active Services displayed publicly.
+- One inactive Service hidden publicly.
+- Correct ascending display order.
+- Backend edits reflected on the public website.
+- `maxItems` property tested with a value of one.
+- Empty-state behavior tested.
+- Desktop and mobile responsive layouts verified.

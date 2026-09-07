@@ -1,0 +1,43 @@
+<section class="services-section" aria-labelledby="services-title">
+    <div class="container">
+        {% if showServicesTitle %}
+            <div class="section-heading">
+                <p class="eyebrow">Our Services</p>
+                <h2 id="services-title">What We Can Build Together</h2>
+                <p>
+                    These services are managed dynamically through the
+                    October CMS administration area.
+                </p>
+            </div>
+        {% endif %}
+
+        {% if services|length %}
+            <div class="services-grid">
+                {% for service in services %}
+                    <article class="service-card">
+                        <span class="service-number">
+                            {{ loop.index }}
+                        </span>
+
+                        <h3>{{ service.title }}</h3>
+
+                        <p class="service-summary">
+                            {{ service.short_description }}
+                        </p>
+
+                        {% if service.content %}
+                            <div class="service-content">
+                                {{ service.content|raw }}
+                            </div>
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="services-empty" role="status">
+                <h3>No services are available right now.</h3>
+                <p>Please check again later.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
