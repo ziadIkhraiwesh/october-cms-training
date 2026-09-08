@@ -1,0 +1,33 @@
+fields:
+    name:
+        label: Category Name
+        type: text
+        span: left
+        required: true
+        placeholder: Enter category name
+
+    slug:
+        label: Slug
+        type: text
+        span: right
+        required: true
+        preset:
+            field: name
+            type: slug
+        comment: Unique value used for public filtering
+
+    is_active:
+        label: Active
+        type: switch
+        span: left
+        default: true
+        comment: Inactive categories and their services are hidden publicly
+
+    sort_order:
+        label: Display Order
+        type: number
+        span: right
+        default: 0
+        required: true
+        min: 0
+        comment: Lower numbers appear first

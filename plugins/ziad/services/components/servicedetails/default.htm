@@ -1,0 +1,39 @@
+<section class="service-details-section">
+    <div class="container">
+        <a class="back-link" href="{{ 'home'|page }}">
+            ← Back to Services
+        </a>
+
+        <article class="service-details-card">
+            {% if service.image %}
+                <img
+                    class="service-details-image"
+                    src="{{ service.image.path }}"
+                    alt="{{ service.title }}"
+                >
+            {% else %}
+                <div class="service-details-image service-image-placeholder">
+                    No image available
+                </div>
+            {% endif %}
+
+            <div class="service-details-content">
+                <span class="service-category">
+                    {{ service.category.name }}
+                </span>
+
+                <h1>{{ service.title }}</h1>
+
+                <p class="service-details-summary">
+                    {{ service.short_description }}
+                </p>
+
+                {% if service.content %}
+                    <div class="rich-content">
+                        {{ service.content|raw }}
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+    </div>
+</section>

@@ -196,3 +196,117 @@ The completed verification included:
 - `maxItems` property tested with a value of one.
 - Empty-state behavior tested.
 - Desktop and mobile responsive layouts verified.
+## Task 22: Relationships, Images, and Advanced Service Management
+
+Task 22 extends the `Ziad.Services` plugin with related Service Categories, image attachments, category filtering, and dynamic Service Details pages.
+
+### Service Category Model
+
+Service Categories are stored in the `ziad_services_service_categories` database table.
+
+Category fields:
+
+- `name`: Category display name.
+- `slug`: Unique value used for filtering.
+- `is_active`: Controls whether the category and its Services are publicly visible.
+- `sort_order`: Controls backend and public ordering.
+- `created_at` and `updated_at`: Record timestamps.
+
+Administrators can manage Categories through:
+
+`Administration Area → Services → Categories`
+
+The backend supports listing, creating, editing, deleting, activating, and ordering Categories.
+
+### Service and Category Relationship
+
+Each Service belongs to one Service Category, while each Category can contain multiple Services.
+
+The relationship is implemented using:
+
+- `Service::$belongsTo`
+- `ServiceCategory::$hasMany`
+- The `category_id` foreign key in the Services table.
+
+The Service backend form uses a database-backed Category dropdown instead of manually entered category IDs.
+
+### Service Image Attachment
+
+Each Service supports one image using October CMS `attachOne` file attachment functionality.
+
+The backend file upload field accepts:
+
+- JPG
+- JPEG
+- PNG
+- WebP
+
+Images can be uploaded, changed, and removed through the Service form. The public component loads and displays the attached image with the related Service.
+
+### Public Category Filtering
+
+The `ServiceList` component includes a configurable `categorySlug` property.
+
+Example:
+
+    [serviceList]
+    maxItems = 6
+    orderDirection = "asc"
+    showTitle = 1
+    categorySlug = "cms-solutions"
+
+Leaving `categorySlug` empty displays Services from all active Categories. Providing a Category slug displays only Services related to that Category.
+
+### Published Content Rules
+
+A Service appears publicly only when:
+
+- The Service is active.
+- Its related Category is active.
+- The Service matches the configured Category filter, when used.
+
+Inactive Services, Services without a valid Category, and Services belonging to inactive Categories are excluded from the public query.
+
+### Service Details Page
+
+Each published Service has a dynamic details page:
+
+    /services/:id
+
+The `ServiceDetails` component retrieves one active Service with its Category and image. The page displays:
+
+- Service image.
+- Category name.
+- Service title.
+- Short description.
+- Detailed content.
+
+A missing Service, inactive Service, or Service belonging to an inactive Category returns a not-found response.
+
+### Database Update
+
+Task 22 adds plugin version `v1.0.2` with:
+
+- `create_service_categories_table.php`
+- `add_category_id_to_services_table.php`
+
+After pulling the latest project changes, run:
+
+    composer install
+    php artisan october:migrate
+    php artisan cache:clear
+
+### Task 22 Verification
+
+The completed verification included:
+
+- Three Categories with unique slugs and different display orders.
+- Multiple Services assigned to different Categories.
+- Images uploaded for Services.
+- Category relationships displayed in backend and frontend views.
+- Category filtering tested using `categorySlug`.
+- Dynamic Service Details page tested.
+- Duplicate Category slug validation tested.
+- Inactive Service and inactive Category behavior tested.
+- Missing Service URL returned a not-found response.
+- Desktop and mobile layouts verified.

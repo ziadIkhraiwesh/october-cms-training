@@ -4,10 +4,17 @@
             <div class="section-heading">
                 <p class="eyebrow">Our Services</p>
                 <h2 id="services-title">What We Can Build Together</h2>
-                <p>
-                    These services are managed dynamically through the
-                    October CMS administration area.
-                </p>
+
+                {% if activeCategorySlug %}
+                    <p>
+                        Showing services in:
+                        <strong>{{ activeCategorySlug }}</strong>
+                    </p>
+                {% else %}
+                    <p>
+                        Services managed dynamically through October CMS.
+                    </p>
+                {% endif %}
             </div>
         {% endif %}
 
@@ -15,28 +22,43 @@
             <div class="services-grid">
                 {% for service in services %}
                     <article class="service-card">
-                        <span class="service-number">
-                            {{ loop.index }}
-                        </span>
-
-                        <h3>{{ service.title }}</h3>
-
-                        <p class="service-summary">
-                            {{ service.short_description }}
-                        </p>
-
-                        {% if service.content %}
-                            <div class="service-content">
-                                {{ service.content|raw }}
+                        {% if service.image %}
+                            <img
+                                class="service-image"
+                                src="{{ service.image.path }}"
+                                alt="{{ service.title }}"
+                            >
+                        {% else %}
+                            <div class="service-image-placeholder">
+                                No image available
                             </div>
                         {% endif %}
+
+                        <div class="service-card-body">
+                            <span class="service-category">
+                                {{ service.category.name }}
+                            </span>
+
+                            <h3>{{ service.title }}</h3>
+
+                            <p class="service-summary">
+                                {{ service.short_description }}
+                            </p>
+
+                            <a
+                                class="service-link"
+                                href="{{ 'service-details'|page({ id: service.id }) }}"
+                            >
+                                View Service Details
+                            </a>
+                        </div>
                     </article>
                 {% endfor %}
             </div>
         {% else %}
             <div class="services-empty" role="status">
                 <h3>No services are available right now.</h3>
-                <p>Please check again later.</p>
+                <p>Please select another category or check again later.</p>
             </div>
         {% endif %}
     </div>

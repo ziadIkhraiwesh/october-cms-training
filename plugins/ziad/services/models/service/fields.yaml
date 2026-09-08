@@ -6,6 +6,25 @@ fields:
         required: true
         placeholder: Enter the service title
 
+    category_id:
+        label: Service Category
+        type: dropdown
+        span: full
+        required: true
+        emptyOption: Select a category
+        comment: Select an active category for this service
+
+    image:
+        label: Service Image
+        type: fileupload
+        mode: image
+        span: full
+        imageWidth: 400
+        imageHeight: 240
+        fileTypes: jpg,jpeg,png,webp
+        maxFiles: 1
+        comment: Upload a JPG, PNG, or WebP service image
+
     short_description:
         label: Short Description
         type: textarea
@@ -27,7 +46,7 @@ fields:
         type: switch
         span: left
         default: true
-        comment: Only active services appear publicly
+        comment: Only active services in active categories appear publicly
 
     sort_order:
         label: Display Order

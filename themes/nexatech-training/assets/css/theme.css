@@ -417,3 +417,115 @@ nav a.active {
         padding: 1.5rem;
     }
 }
+.service-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.service-card-body {
+    padding: 1.5rem;
+}
+
+.service-image,
+.service-image-placeholder {
+    width: 100%;
+    height: 220px;
+}
+
+.service-image {
+    display: block;
+    object-fit: cover;
+}
+
+.service-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-weight: 700;
+    background: #e5edf2;
+}
+
+.service-category {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #e8f4f9;
+    border-radius: 999px;
+}
+
+.service-link,
+.back-link {
+    color: var(--secondary);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.service-link:hover,
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.service-details-section {
+    min-height: 70vh;
+    padding-block: 4rem;
+    background: #f3f7fa;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.service-details-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 14px 40px rgba(11, 54, 88, 0.1);
+}
+
+.service-details-image {
+    width: 100%;
+    min-height: 460px;
+    object-fit: cover;
+}
+
+.service-details-content {
+    padding: clamp(2rem, 5vw, 4rem);
+}
+
+.service-details-content h1 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.1;
+}
+
+.service-details-summary {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+}
+
+.rich-content {
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .service-details-card {
+        grid-template-columns: 1fr;
+    }
+
+    .service-details-image {
+        min-height: 260px;
+        max-height: 320px;
+    }
+}

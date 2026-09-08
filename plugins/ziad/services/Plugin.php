@@ -9,7 +9,7 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'NexaTech Services',
-            'description' => 'Manage and display dynamic services.',
+            'description' => 'Manage related service categories, services, and images.',
             'author' => 'Ziad Ikhraiwesh',
             'icon' => 'icon-briefcase',
         ];
@@ -19,6 +19,7 @@ class Plugin extends PluginBase
     {
         return [
             \Ziad\Services\Components\ServiceList::class => 'serviceList',
+            \Ziad\Services\Components\ServiceDetails::class => 'serviceDetails',
         ];
     }
 
@@ -28,6 +29,10 @@ class Plugin extends PluginBase
             'ziad.services.manage_services' => [
                 'tab' => 'Services',
                 'label' => 'Manage services',
+            ],
+            'ziad.services.manage_categories' => [
+                'tab' => 'Services',
+                'label' => 'Manage service categories',
             ],
         ];
     }
@@ -39,8 +44,25 @@ class Plugin extends PluginBase
                 'label' => 'Services',
                 'url' => Backend::url('ziad/services/services'),
                 'icon' => 'icon-briefcase',
-                'permissions' => ['ziad.services.manage_services'],
+                'permissions' => [
+                    'ziad.services.manage_services',
+                    'ziad.services.manage_categories',
+                ],
                 'order' => 500,
+                'sideMenu' => [
+                    'services' => [
+                        'label' => 'Services',
+                        'url' => Backend::url('ziad/services/services'),
+                        'icon' => 'icon-list',
+                        'permissions' => ['ziad.services.manage_services'],
+                    ],
+                    'categories' => [
+                        'label' => 'Categories',
+                        'url' => Backend::url('ziad/services/servicecategories'),
+                        'icon' => 'icon-folder-open',
+                        'permissions' => ['ziad.services.manage_categories'],
+                    ],
+                ],
             ],
         ];
     }

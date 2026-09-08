@@ -1,5 +1,4 @@
-<?php
-namespace Ziad\Services\Components;
+<?php namespace Ziad\Services\Components;
 
 use Cms\Classes\ComponentBase;
 use Ziad\Services\Models\Service;
@@ -10,7 +9,7 @@ class ServiceList extends ComponentBase
     {
         return [
             'name' => 'Dynamic Service List',
-            'description' => 'Displays active services from the database in display order.',
+            'description' => 'Displays active services with categories and images.',
         ];
     }
 
@@ -20,16 +19,8 @@ class ServiceList extends ComponentBase
             'maxItems' => [
                 'title' => 'Maximum Services',
                 'description' => 'Maximum number of services to display.',
-                'default' => 3,
+                'default' => 6,
                 'type' => 'string',
-                'validation' => [
-                    'integer' => [
-                        'message' => 'Maximum Services must be a number.',
-                    ],
-                    'min:1' => [
-                        'message' => 'Maximum Services must be at least 1.',
-                    ],
-                ],
             ],
             'orderDirection' => [
                 'title' => 'Order Direction',
@@ -47,6 +38,12 @@ class ServiceList extends ComponentBase
                 'default' => true,
                 'type' => 'checkbox',
             ],
+            'categorySlug' => [
+                'title' => 'Category Slug',
+                'description' => 'Leave empty to show all categories.',
+                'default' => '',
+                'type' => 'string',
+            ],
         ];
     }
 
@@ -54,24 +51,38 @@ class ServiceList extends ComponentBase
     {
         $this->page['services'] = $this->loadServices();
         $this->page['showServicesTitle'] = (bool) $this->property('showTitle');
+        $this->page['activeCategorySlug'] = trim(
+            (string) $this->property('categorySlug')
+        );
     }
 
     protected function loadServices()
     {
-        $limit = max(1, min(12, (int) $this->property('maxItems', 3)));
+        $limit = max(1, min(12, (int) $this->property('maxItems', 6)));
 
         $direction = strtolower(
             (string) $this->property('orderDirection', 'asc')
         );
-        $limit = max(1, min(12, (int) $this->property('maxItems', 3)));
-        $direction = strtolower((string) $this->property('orderDirection', 'asc'));
 
         if (!in_array($direction, ['asc', 'desc'], true)) {
             $direction = 'asc';
         }
 
+        $categorySlug = trim(
+            (string) $this->property('categorySlug')
+        );
+
         return Service::query()
+            ->with(['category', 'image'])
             ->active()
+            ->whereHas('category', function ($query) {
+                $query->where('is_active', true);
+            })
+            ->when($categorySlug, function ($query, $categorySlug) {
+                $query->whereHas('category', function ($categoryQuery) use ($categorySlug) {
+                    $categoryQuery->where('slug', $categorySlug);
+                });
+            })
             ->ordered($direction)
             ->limit($limit)
             ->get();

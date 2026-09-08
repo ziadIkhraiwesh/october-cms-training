@@ -5,11 +5,11 @@ use BackendMenu;
 use Backend\Classes\Controller;
 
 /**
- * Services Backend Controller
+ * Service Categories Backend Controller
  *
  * @link https://docs.octobercms.com/4.x/extend/system/controllers.html
  */
-class Services extends Controller
+class ServiceCategories extends Controller
 {
     public $implement = [
         \Backend\Behaviors\FormController::class,
@@ -29,7 +29,7 @@ class Services extends Controller
     /**
      * @var array required permissions
      */
-    public $requiredPermissions = ['ziad.services.manage_services'];
+    public $requiredPermissions = ['ziad.services.manage_categories'];
     /**
      * __construct the controller
      */
@@ -37,6 +37,6 @@ class Services extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Ziad.Services', 'services', 'services');
+        BackendMenu::setContext('Ziad.Services', 'services', 'categories');
     }
 }

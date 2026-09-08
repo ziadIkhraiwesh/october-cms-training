@@ -1,3 +1,10 @@
 v1.0.1:
     - First version of NexaTech Services
     - create_services_table.php
+    
+
+
+v1.0.2:
+    - Add service categories and category relationship
+    - create_service_categories_table.php
+    - add_category_id_to_services_table.php    
