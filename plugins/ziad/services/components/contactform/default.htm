@@ -1,0 +1,88 @@
+<div class="contact-grid">
+    <div class="contact-information">
+        <p class="eyebrow">Contact Information</p>
+        <h2>Get in Touch</h2>
+
+        {% if contactSettings.help_text %}
+            <p>{{ contactSettings.help_text }}</p>
+        {% endif %}
+
+        <div class="contact-details">
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:{{ contactSettings.contact_email }}">
+                    {{ contactSettings.contact_email }}
+                </a>
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                <a href="tel:{{ contactSettings.phone }}">
+                    {{ contactSettings.phone }}
+                </a>
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                {{ contactSettings.address }}
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <form
+            id="contact-form"
+            class="contact-form"
+            data-request="contactForm::onSubmit"
+            data-request-validate
+            data-request-flash
+            data-request-success="this.reset()"
+        >
+            <div class="honeypot-field" aria-hidden="true">
+                <label for="website">Website</label>
+                <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabindex="-1"
+                    autocomplete="off"
+                >
+            </div>
+
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" maxlength="100">
+            <span class="form-error" data-validate-for="name"></span>
+
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" maxlength="150">
+            <span class="form-error" data-validate-for="email"></span>
+
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" maxlength="200">
+            <span class="form-error" data-validate-for="subject"></span>
+
+            <label for="message">Message</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                maxlength="5000"
+            ></textarea>
+            <span class="form-error" data-validate-for="message"></span>
+
+            <div class="form-error-summary" data-validate-error>
+                <p data-message></p>
+            </div>
+
+            <div id="contact-form-feedback" aria-live="polite"></div>
+
+            <button
+                class="button button-primary"
+                type="submit"
+                data-attach-loading
+            >
+                Send Message
+            </button>
+        </form>
+    </div>
+</div>

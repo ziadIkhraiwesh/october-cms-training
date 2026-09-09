@@ -310,3 +310,72 @@ The completed verification included:
 - Inactive Service and inactive Category behavior tested.
 - Missing Service URL returned a not-found response.
 - Desktop and mobile layouts verified.
+## Task 23 - Permissions, Settings & AJAX Contact Management
+
+Task 23 extends the existing `Ziad.Services` plugin with backend permissions, configurable contact settings, and a database-backed AJAX contact workflow.
+
+### Backend Permissions
+
+The plugin defines separate permissions for:
+
+- `ziad.services.manage_services`: manage Services.
+- `ziad.services.manage_categories`: manage Service Categories.
+- `ziad.services.manage_contact_messages`: view, update, and delete Contact Messages.
+- `ziad.services.manage_settings`: manage public contact settings.
+
+A non-superuser `Service Editor` role was tested with access to Services and Categories but without access to Contact Messages or Contact Settings. Restricted sections return an Access Denied response.
+
+### Contact Settings
+
+The **Settings ? NexaTech ? Contact Settings** section allows administrators to configure:
+
+- Contact email.
+- Phone number.
+- Address.
+- Optional help text.
+
+These values are loaded dynamically on the public Contact page through the `Settings` model, so normal contact information changes do not require editing theme files.
+
+### Contact Message Model
+
+Contact messages are stored in the `ziad_services_contact_messages` table with:
+
+- Name.
+- Email.
+- Subject.
+- Message.
+- Status (`new` or `read`).
+- Created and updated timestamps.
+
+Messages can be searched, opened, marked as New or Read, and deleted through the October CMS backend.
+
+### AJAX Contact Flow
+
+The public Contact page uses the reusable `ContactForm` component and October CMS AJAX framework.
+
+1. The visitor submits the Contact form.
+2. The AJAX handler validates all input on the server.
+3. Invalid requests return clearly associated validation errors.
+4. Valid messages are stored with the `new` status.
+5. A success message appears without reloading the page.
+6. Authorized administrators can review and update messages.
+
+### Validation and Anti-Spam
+
+Server-side validation checks required fields, email format, text lengths, and allowed status values. A hidden honeypot rejects automated submissions. Rate limiting allows a maximum of three valid submissions per IP address per minute. Twig output escaping helps render submitted data safely.
+
+Permissions limit each backend user to the sections required for their role. Server-side validation is essential because browser-side validation can be bypassed.
+
+### Database Update
+
+After pulling the project, run:
+
+```bash
+php artisan october:migrate
+```
+
+Task 23 installs plugin version `v1.0.3` and creates the Contact Messages table.
+
+### Task 23 Evidence
+
+Screenshots are available in `screenshots/task-23/` and include plugin settings, public dynamic contact information, validation errors, successful AJAX submission, backend message management, permission configuration and restriction, and responsive mobile behavior.

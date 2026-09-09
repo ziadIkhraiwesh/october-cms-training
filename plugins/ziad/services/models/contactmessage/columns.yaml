@@ -1,0 +1,23 @@
+columns:
+    name:
+        label: Sender Name
+        searchable: true
+        sortable: true
+
+    email:
+        label: Email
+        searchable: true
+
+    subject:
+        label: Subject
+        searchable: true
+
+    status:
+        label: Status
+        sortable: true
+
+    created_at:
+        label: Submitted At
+        type: datetime
+        format: 'Y-m-d H:i'
+        sortable: true

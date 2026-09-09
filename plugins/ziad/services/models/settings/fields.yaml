@@ -1,0 +1,26 @@
+fields:
+    contact_email:
+        label: Contact Email
+        type: email
+        span: left
+        required: true
+        comment: Displayed publicly on the Contact page and footer.
+
+    phone:
+        label: Phone Number
+        type: text
+        span: right
+        required: true
+
+    address:
+        label: Address
+        type: text
+        span: full
+        required: true
+
+    help_text:
+        label: Contact Help Text
+        type: textarea
+        size: small
+        span: full
+        comment: Optional short text displayed above the public contact form.

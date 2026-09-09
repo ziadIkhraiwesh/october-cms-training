@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Contact Message
+
+# Model Form Field configuration
+form: $/ziad/services/models/contactmessage/fields.yaml
+
+# Model Class name
+modelClass: Ziad\Services\Models\ContactMessage
+
+# Default redirect location
+defaultRedirect: ziad/services/contactmessages
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: ziad/services/contactmessages/update/:id
+    redirectClose: ziad/services/contactmessages
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: ziad/services/contactmessages
+    redirectClose: ziad/services/contactmessages
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title
