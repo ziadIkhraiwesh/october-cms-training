@@ -1,0 +1,21 @@
+<section class="section builder-image-text-section">
+    <div class="container builder-image-text image-{{ section.image_position|default('left') }}">
+        <div class="builder-image">
+            {% if section.image %}
+                <img
+                    src="{{ section.image|media }}"
+                    alt="{{ section.heading }}"
+                    loading="lazy"
+                >
+            {% endif %}
+        </div>
+
+        <div class="builder-copy">
+            <p class="eyebrow">Featured Content</p>
+            <h2>{{ section.heading }}</h2>
+            <div class="builder-body">
+                {{ section.body|nl2br }}
+            </div>
+        </div>
+    </div>
+</section>

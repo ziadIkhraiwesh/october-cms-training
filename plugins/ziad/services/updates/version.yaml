@@ -10,3 +10,7 @@ v1.0.2:
 v1.0.3:
     - Add contact messages and backend management
     - create_contact_messages_table.php
+
+v1.0.4:
+    - Add dynamic pages and reusable page builder sections
+    - create_dynamic_pages_table.php

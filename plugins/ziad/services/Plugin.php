@@ -9,8 +9,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'NexaTech Services',
-            'description' => 'Manage related service categories, services, and images.',
+            'name' => 'NexaTech Content',
+            'description' => 'Manage services, messages, settings, and dynamic pages.',
             'author' => 'Ziad Ikhraiwesh',
             'icon' => 'icon-briefcase',
         ];
@@ -22,6 +22,8 @@ class Plugin extends PluginBase
             \Ziad\Services\Components\ServiceList::class => 'serviceList',
             \Ziad\Services\Components\ServiceDetails::class => 'serviceDetails',
             \Ziad\Services\Components\ContactForm::class => 'contactForm',
+            \Ziad\Services\Components\DynamicPageRenderer::class => 'dynamicPageRenderer',
+            \Ziad\Services\Components\DynamicNavigation::class => 'dynamicNavigation',
         ];
     }
 
@@ -29,23 +31,28 @@ class Plugin extends PluginBase
     {
         return [
             'ziad.services.manage_services' => [
-                'tab' => 'Services',
+                'tab' => 'NexaTech',
                 'label' => 'Manage services',
             ],
             'ziad.services.manage_categories' => [
-                'tab' => 'Services',
+                'tab' => 'NexaTech',
                 'label' => 'Manage service categories',
             ],
             'ziad.services.manage_contact_messages' => [
-                'tab' => 'Services',
+                'tab' => 'NexaTech',
                 'label' => 'Manage contact messages',
             ],
             'ziad.services.manage_settings' => [
-                'tab' => 'Services',
+                'tab' => 'NexaTech',
                 'label' => 'Manage contact settings',
+            ],
+            'ziad.services.manage_dynamic_pages' => [
+                'tab' => 'NexaTech',
+                'label' => 'Manage dynamic pages',
             ],
         ];
     }
+
     public function registerSettings()
     {
         return [
@@ -66,13 +73,14 @@ class Plugin extends PluginBase
     {
         return [
             'services' => [
-                'label' => 'Services',
+                'label' => 'NexaTech',
                 'url' => Backend::url('ziad/services/services'),
                 'icon' => 'icon-briefcase',
                 'permissions' => [
                     'ziad.services.manage_services',
                     'ziad.services.manage_categories',
                     'ziad.services.manage_contact_messages',
+                    'ziad.services.manage_dynamic_pages',
                 ],
                 'order' => 500,
                 'sideMenu' => [
@@ -93,6 +101,12 @@ class Plugin extends PluginBase
                         'url' => Backend::url('ziad/services/contactmessages'),
                         'icon' => 'icon-envelope',
                         'permissions' => ['ziad.services.manage_contact_messages'],
+                    ],
+                    'dynamicpages' => [
+                        'label' => 'Dynamic Pages',
+                        'url' => Backend::url('ziad/services/dynamicpages'),
+                        'icon' => 'icon-files-o',
+                        'permissions' => ['ziad.services.manage_dynamic_pages'],
                     ],
                 ],
             ],

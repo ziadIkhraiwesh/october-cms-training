@@ -1,0 +1,8 @@
+{% for navigationPage in dynamicNavigationPages %}
+    <a
+        href="{{ ('/pages/' ~ navigationPage.slug)|app }}"
+        class="{{ this.param.slug == navigationPage.slug ? 'active' : '' }}"
+    >
+        {{ navigationPage.title }}
+    </a>
+{% endfor %}

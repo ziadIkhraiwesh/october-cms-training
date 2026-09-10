@@ -1,0 +1,203 @@
+tabs:
+    fields:
+        title:
+            label: Page Title
+            type: text
+            span: left
+            required: true
+            tab: Page
+
+        slug:
+            label: Slug
+            type: text
+            span: right
+            required: true
+            preset:
+                field: title
+                type: slug
+            comment: Public URL will be /pages/your-slug
+            tab: Page
+
+        status:
+            label: Status
+            type: dropdown
+            span: left
+            required: true
+            default: draft
+            tab: Page
+
+        show_in_navigation:
+            label: Show in Navigation
+            type: switch
+            span: right
+            default: false
+            tab: Page
+
+        navigation_order:
+            label: Navigation Order
+            type: number
+            span: left
+            default: 0
+            min: 0
+            tab: Page
+
+        sections:
+            label: Page Sections
+            type: repeater
+            prompt: Add Section
+            displayMode: builder
+            tab: Page Builder
+            groups:
+                hero:
+                    name: Hero / Banner
+                    description: Large introductory section with an optional image and button.
+                    icon: icon-star
+                    fields:
+                        is_active:
+                            label: Active
+                            type: switch
+                            default: true
+                            span: full
+
+                        title:
+                            label: Hero Title
+                            type: text
+                            required: true
+                            span: left
+
+                        subtitle:
+                            label: Hero Subtitle
+                            type: textarea
+                            size: small
+                            span: right
+
+                        image:
+                            label: Background Image
+                            type: mediafinder
+                            mode: image
+                            span: left
+
+                        button_label:
+                            label: Button Label
+                            type: text
+                            span: right
+
+                        button_url:
+                            label: Button URL
+                            type: text
+                            placeholder: /contact
+                            span: right
+
+                text_content:
+                    name: Text Content
+                    description: Heading and readable body text.
+                    icon: icon-align-left
+                    fields:
+                        is_active:
+                            label: Active
+                            type: switch
+                            default: true
+                            span: full
+
+                        heading:
+                            label: Heading
+                            type: text
+                            required: true
+                            span: full
+
+                        body:
+                            label: Body Content
+                            type: textarea
+                            size: large
+                            required: true
+                            span: full
+
+                image_text:
+                    name: Image + Text
+                    description: Image with supporting heading and text.
+                    icon: icon-picture-o
+                    fields:
+                        is_active:
+                            label: Active
+                            type: switch
+                            default: true
+                            span: full
+
+                        heading:
+                            label: Heading
+                            type: text
+                            required: true
+                            span: full
+
+                        body:
+                            label: Body Content
+                            type: textarea
+                            size: large
+                            required: true
+                            span: full
+
+                        image:
+                            label: Image
+                            type: mediafinder
+                            mode: image
+                            required: true
+                            span: left
+
+                        image_position:
+                            label: Image Position
+                            type: dropdown
+                            default: left
+                            span: right
+                            options:
+                                left: Left
+                                right: Right
+
+                cta:
+                    name: Call to Action
+                    description: Highlighted message with a button.
+                    icon: icon-bullhorn
+                    fields:
+                        is_active:
+                            label: Active
+                            type: switch
+                            default: true
+                            span: full
+
+                        heading:
+                            label: CTA Heading
+                            type: text
+                            required: true
+                            span: full
+
+                        text:
+                            label: CTA Text
+                            type: textarea
+                            size: small
+                            span: full
+
+                        button_label:
+                            label: Button Label
+                            type: text
+                            required: true
+                            span: left
+
+                        button_url:
+                            label: Button URL
+                            type: text
+                            required: true
+                            placeholder: /contact
+                            span: right
+
+        seo_title:
+            label: SEO Title
+            type: text
+            span: full
+            comment: Falls back to the normal page title when empty.
+            tab: SEO
+
+        seo_description:
+            label: SEO Description
+            type: textarea
+            size: small
+            span: full
+            tab: SEO

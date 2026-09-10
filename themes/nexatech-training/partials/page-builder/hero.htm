@@ -1,0 +1,23 @@
+<section
+    class="builder-hero{% if section.image %} has-background-image{% endif %}"
+    {% if section.image %}
+        style="background-image:
+            linear-gradient(rgba(8, 57, 88, 0.82), rgba(17, 119, 168, 0.78)),
+            url('{{ section.image|media }}');"
+    {% endif %}
+>
+    <div class="container builder-hero-content">
+        <p class="eyebrow">NexaTech Dynamic Page</p>
+        <h1>{{ section.title }}</h1>
+
+        {% if section.subtitle %}
+            <p>{{ section.subtitle }}</p>
+        {% endif %}
+
+        {% if section.button_label and section.button_url starts with '/' %}
+            <a class="button button-primary" href="{{ section.button_url }}">
+                {{ section.button_label }}
+            </a>
+        {% endif %}
+    </div>
+</section>

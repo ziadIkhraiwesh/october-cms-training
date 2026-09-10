@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Dynamic Page
+
+# Model Form Field configuration
+form: $/ziad/services/models/dynamicpage/fields.yaml
+
+# Model Class name
+modelClass: Ziad\Services\Models\DynamicPage
+
+# Default redirect location
+defaultRedirect: ziad/services/dynamicpages
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: ziad/services/dynamicpages/update/:id
+    redirectClose: ziad/services/dynamicpages
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: ziad/services/dynamicpages
+    redirectClose: ziad/services/dynamicpages
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

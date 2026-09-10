@@ -1,0 +1,16 @@
+<article class="dynamic-page">
+    {% for section in pageSections %}
+        {% if section._group == 'hero' %}
+            {% partial 'page-builder/hero' section=section %}
+
+        {% elseif section._group == 'text_content' %}
+            {% partial 'page-builder/text-content' section=section %}
+
+        {% elseif section._group == 'image_text' %}
+            {% partial 'page-builder/image-text' section=section %}
+
+        {% elseif section._group == 'cta' %}
+            {% partial 'page-builder/cta' section=section %}
+        {% endif %}
+    {% endfor %}
+</article>

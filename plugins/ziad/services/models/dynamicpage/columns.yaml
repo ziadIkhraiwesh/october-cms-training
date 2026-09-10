@@ -1,0 +1,25 @@
+columns:
+    title:
+        label: Page Title
+        searchable: true
+        sortable: true
+
+    slug:
+        label: Slug
+        searchable: true
+        sortable: true
+
+    status:
+        label: Status
+        sortable: true
+
+    show_in_navigation:
+        label: In Navigation
+        type: switch
+        sortable: true
+
+    updated_at:
+        label: Last Updated
+        type: datetime
+        format: 'Y-m-d H:i'
+        sortable: true

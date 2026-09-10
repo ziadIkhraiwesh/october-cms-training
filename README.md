@@ -379,3 +379,94 @@ Task 23 installs plugin version `v1.0.3` and creates the Contact Messages table.
 ### Task 23 Evidence
 
 Screenshots are available in `screenshots/task-23/` and include plugin settings, public dynamic contact information, validation errors, successful AJAX submission, backend message management, permission configuration and restriction, and responsive mobile behavior.
+## Task 24 - Dynamic Page Builder and Reusable Content Sections
+
+Task 24 adds a database-backed Page Builder to the existing `Ziad.Services` plugin. Administrators can create public pages using approved reusable sections without writing page HTML manually.
+
+### Dynamic Page Model
+
+Each dynamic page stores:
+
+- Page title.
+- Unique URL slug.
+- Status: Draft or Published.
+- SEO title and description.
+- Navigation visibility and order.
+- Structured page sections.
+- Created and updated timestamps.
+
+### Page Builder Sections
+
+The backend Page Builder uses a structured repeater with four approved section types:
+
+- **Hero / Banner:** title, subtitle, background image, button label, and button URL.
+- **Text Content:** heading and body content.
+- **Image + Text:** heading, body, image, and image position.
+- **Call to Action:** heading, supporting text, button label, and button URL.
+
+Each section also includes an Active switch. Administrators can add, edit, reorder, disable, and remove sections.
+
+### Theme Partial Mapping
+
+Saved section types are rendered through reusable theme partials:
+
+- `hero` maps to `partials/page-builder/hero.htm`
+- `text_content` maps to `partials/page-builder/text-content.htm`
+- `image_text` maps to `partials/page-builder/image-text.htm`
+- `cta` maps to `partials/page-builder/cta.htm`
+
+This keeps content separate from presentation and avoids duplicating page markup.
+
+### Public Dynamic Route
+
+Published pages are available through:
+
+```text
+/pages/:slug
+```
+
+Example URLs:
+
+```text
+/pages/cloud-solutions
+/pages/digital-experience
+```
+
+Unknown slugs and Draft pages return a Not Found response.
+
+### Dynamic Navigation and SEO
+
+Published pages with **Show in Navigation** enabled are loaded dynamically into the main website navigation. Navigation order is controlled from the backend.
+
+The public renderer uses the configured SEO title and SEO description. If the SEO title is empty, the normal page title is used as a fallback.
+
+### Permission and Validation
+
+The permission `ziad.services.manage_dynamic_pages` protects the Dynamic Pages backend controller and navigation item.
+
+Validation requires a page title, unique slug, valid status, non-negative navigation order, and at least one approved section. Public output is escaped by Twig, media files use October CMS Media Manager paths, and CTA buttons accept internal website paths.
+
+### Sample Pages
+
+Two pages were created with different section combinations:
+
+- **Cloud Solutions:** Hero, CTA, and Text Content.
+- **Digital Experience:** Hero, Image + Text, Text Content, and CTA.
+
+Section reordering, Draft behavior, unknown slugs, dynamic navigation, SEO metadata, desktop display, and mobile responsiveness were tested.
+
+### Database Update
+
+After pulling the project, run:
+
+```bash
+php artisan october:migrate
+```
+
+Task 24 installs plugin version `v1.0.4` and creates the Dynamic Pages table.
+
+Reusable approved sections are safer and easier to maintain than unrestricted HTML because editors can manage content while the theme controls markup, layout, responsiveness, and visual consistency.
+
+### Task 24 Evidence
+
+Task 24 screenshots are stored in `screenshots/task-24/`.

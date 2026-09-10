@@ -573,3 +573,119 @@ nav a.active {
     cursor: wait;
     opacity: 0.65;
 }
+.site-header nav {
+    flex-wrap: wrap;
+}
+
+.builder-hero {
+    display: grid;
+    min-height: 540px;
+    padding-block: 6rem;
+    color: #ffffff;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background-position: center;
+    background-size: cover;
+}
+
+.builder-hero-content {
+    display: grid;
+    place-content: center;
+    max-width: 900px;
+}
+
+.builder-hero h1 {
+    margin-block: 1rem;
+    color: #ffffff;
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    line-height: 1.05;
+}
+
+.builder-hero p:not(.eyebrow) {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    font-size: 1.2rem;
+}
+
+.builder-hero .button {
+    justify-self: center;
+}
+
+.builder-narrow {
+    max-width: 900px;
+}
+
+.builder-body {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.builder-image-text {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 4rem;
+}
+
+.builder-image-text.image-right .builder-image {
+    order: 2;
+}
+
+.builder-image img {
+    width: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 20px 45px rgba(8, 57, 88, 0.15);
+}
+
+.builder-cta-section {
+    background: #edf6fa;
+}
+
+.builder-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 16px 35px rgba(8, 57, 88, 0.08);
+}
+
+.builder-cta h2 {
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .builder-hero {
+        min-height: 460px;
+        padding-block: 4rem;
+    }
+
+    .builder-image-text {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .builder-image-text.image-right .builder-image {
+        order: 0;
+    }
+
+    .builder-image img {
+        min-height: 240px;
+    }
+
+    .builder-cta {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .builder-cta .button {
+        width: 100%;
+    }
+}

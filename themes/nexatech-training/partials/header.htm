@@ -5,24 +5,15 @@
         </a>
 
         <nav aria-label="Main navigation">
-            <a
-                href="{{ 'home'|page }}"
-                class="{{ this.page.id == 'home' ? 'active' : '' }}"
-            >
+            <a href="{{ 'home'|page }}" class="{{ this.page.id == 'home' ? 'active' : '' }}">
                 Home
             </a>
 
-            <a
-                href="{{ 'about'|page }}"
-                class="{{ this.page.id == 'about' ? 'active' : '' }}"
-            >
+            <a href="{{ 'about'|page }}" class="{{ this.page.id == 'about' ? 'active' : '' }}">
                 About
             </a>
-
-            <a
-                href="{{ 'contact'|page }}"
-                class="{{ this.page.id == 'contact' ? 'active' : '' }}"
-            >
+            {% component 'dynamicNavigation' %}
+            <a href="{{ 'contact'|page }}" class="{{ this.page.id == 'contact' ? 'active' : '' }}">
                 Contact
             </a>
         </nav>
